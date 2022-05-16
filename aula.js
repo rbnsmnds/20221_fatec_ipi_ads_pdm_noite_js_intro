@@ -7,12 +7,12 @@ let umaFuncao = function () {
 }
 //e pode ser chamada assim
 umaFuncao()
-//f recebe uma função como parâmetro e, por isso
-//é uma função de alta ordem.
-//Por devolver uma função, g também é de alta ordem.
+/*f recebe uma função como parâmetro e, por isso
+é uma função de alta ordem.
+Por devolver uma função, g também é de alta ordem.*/
 function f (funcao) {
-//chamando a função
-//note como a tipagem dinâmica tem seu preço
+/*chamando a função,
+note como a tipagem dinâmica tem seu preço*/
 //    funcao() //não reconhecida dentro do próprio escopo
 }
 function g () {
@@ -31,7 +31,7 @@ gResult()
 //e assim também
 g()()
 //outros testes
-/* f chama g, que somente devolve uma função.
+/*f chama g, que somente devolve uma função.
 Nada é exibido.*/
 f(g)
 /*f chama a função devolvida por g.
@@ -39,7 +39,7 @@ f(g)
 f(g())
 /*f tenta chamar o que a função criada por g
 devolve. Ela não devolve coisa alguma. Por isso,
-um erro - somente em tempo de execução - acontece. */
+um erro - somente em tempo de execução - acontece.*/
 f(g()())
 //O que acontece?
 f(1) //devolve nada, pois 1 não é uma função.
@@ -79,11 +79,10 @@ function eAgora(){
     return {f1, f2}
 }
 let eAgoraResult = eAgora();
-/* neste momento, a funcao eAgora já
+/*neste momento, a funcao eAgora já
 executou por completo e a variável
 cont já foi incrementada. Seu valor final
-é mantido e, assim, ambas f1 e f2 exibirão 2.
-*/
+é mantido e, assim, ambas f1 e f2 exibirão 2.*/
 eAgoraResult.f1();
 eAgoraResult.f2();
 
@@ -189,7 +188,7 @@ console.log(n4)
 //declarando constantes
 const nome = "Jose";
 const idade = 27;
-// aspas simples e duplas têm o mesmo efeito
+//aspas simples e duplas têm o mesmo efeito
 const sexo = "M";
 const endereco = 'Rua K, 12'
 //declarando variáveis
@@ -207,9 +206,9 @@ var linguagem = "Java";
 console.log("Aprendendo, " + linguagem);
 //escopo não restrito a bloco
 var idadeVar = 18;
-/* exibe undefined. Ou seja, a variável já existe aqui, 
+/*exibe undefined. Ou seja, a variável já existe aqui, 
 só não teve valor atribuído.
-Ela é içada - do inglês hoist - para fora do bloco if */
+Ela é içada - do inglês hoist - para fora do bloco if*/
 console.log(`Oi, ${nome}`);
 if (idade >= 18) {
 var nomeVar = "João";
@@ -217,4 +216,3 @@ console.log(`Parabéns, ${nome}. Você pode dirigir`);
 }
 //ainda existe aqui
 console.log(`Até mais, ${nome}.`);
-

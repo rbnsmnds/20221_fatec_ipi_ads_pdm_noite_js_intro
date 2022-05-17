@@ -1,4 +1,82 @@
 
+//2.1 Representações JSON
+
+//Uma pessoa se chama João e tem 17 anos.
+let pessoa = {
+    nome: "João",
+    idade: 17,
+}
+//o acesso a propriedades pode ser feito com ponto
+console.log("Me chamo " + pessoa.nome);
+//e com [] também
+console.log("Tenho " + pessoa["idade"] + " anos");
+
+/*Uma pessoa se chama Maria, 
+tem 21 anos e mora na rua B, número 121.*/
+let pessoaComEndereco = {
+    nome: "Maria",
+    idade: 21,
+    endereco: {
+    logradouro: "Rua B",
+    numero: 121,
+    },
+};
+console.log(
+    `Sou ${pessoaComEndereco.nome},
+    tenho ${pessoaComEndereco.idade} anos
+    e moro na rua ${pessoaComEndereco.endereco["logradouro"]}
+    número ${pessoaComEndereco["endereco"]["numero"]}`
+);
+
+/*Uma concessionária tem CNPJ e endereço. 
+Ela possui alguns carros em estoque. 
+Cada um deles tem marca, 
+modelo e ana de fabricação.*/
+let concessionaria = {
+    cnpj: "00011122210001-45",
+    endereco: {
+        logradouro: "Rua A",
+        numero: 10,
+        bairro: "Vila J",
+    },
+    veiculos: [
+        {
+            marca: "Ford",
+            modelo: "Ecosport",
+            anoDeFabricacao: 2018,
+        },
+        {
+            marca: "Chevrolet",
+            modelo: "Onix",
+            anoDeFabricacao: 2020,
+        },
+        {
+            marca: "Volkswagen",
+            modelo: "Nivus",
+            anoDeFabricacao: 2020,
+        },
+    ],
+};
+for (let veiculo of concessionaria.veiculos) {
+    console.log(`Marca: ${veiculo.marca}`);
+    console.log(`Modelo: ${veiculo.modelo}`);
+    console.log(`Ano de Fabricação:
+    ${veiculo.anoDeFabricacao}`);
+}
+
+/*Uma calculadora realiza 
+as operações de soma e subtração.*/
+let calculadora = {
+    //pode ser arrow function
+    soma: (a, b) => a + b,
+    //e função comum também
+    subtracao: function (a, b) {
+        return a - b;
+    },
+};
+console.log(`2 + 3 = ${calculadora.soma(2, 3)}`);
+console.log(`2 - 3 = ${calculadora.subtracao(2, 3)}`);
+
 //1.7 Closures
 
 //uma função pode ser atribuída a uma variável

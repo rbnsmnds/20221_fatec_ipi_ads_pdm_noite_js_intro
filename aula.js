@@ -1,4 +1,104 @@
 
+//3.2. O inferno de callbacks
+
+const fs = require("fs");
+const abrirArquivo = function (nomeArquivo) {
+    const exibirConteudo = function (erro, conteudo) {
+        if (erro) {
+            console.log(`Deu erro: ${erro}`);
+        } else {
+            console.log(conteudo.toString());
+        }
+    };
+    fs.readFile(nomeArquivo, exibirConteudo);
+};
+/* crie um arquivo chamado arquivo.txt com o conteúdo
+"2" (sem as aspas)
+no mesmo diretório em que se encontra seu script */
+abrirArquivo("arquivo.txt");
+
+const reabrirArquivo = function (nomeArquivo) {
+    const exibirConteudo = function (erro, conteudo) {
+        if (erro) {
+            console.log(`Deu erro: ${erro}`);
+        } else {
+            console.log(conteudo.toString());
+            const dobro = +conteudo.toString() * 2;
+            const finalizar = function (erro){
+                if(erro){
+                    console.log('Deu erro tentando salvar o dobro')
+                }
+                else{
+                    console.log("Salvou o dobro com sucesso");
+                }
+            }
+            fs.writeFile('dobro.txt', dobro.toString(), finalizar);
+        }
+    };
+    fs.readFile(nomeArquivo, exibirConteudo);
+};
+reabrirArquivo("arquivo.txt");
+
+//3.1 Modelo Single Threaded
+
+console.log('Eu primeiro')
+console.log("Agora eu")
+console.log("Sempre vou ser a última...:(")
+
+//Este pode ser um funcionamento desejável, quando...
+const sum = 2 + 7
+const num = 5
+//só faz sentido se os valores a e b já estiverem disponíveis
+console.log(sum + num)
+
+function demorada(){
+    const atualMais2Segundos = new Date().getTime() + 2000
+    //não esqueça do ;, única instrução no corpo do while
+    while (new Date().getTime() <= atualMais2Segundos);
+    const dConst = 8 + 4
+    return dConst
+}
+const aConst = 2 + 3
+const bConst = 5 + 9
+const dConst = demorada()
+/*o valor de e não depende do valor devolvido
+pela função demorada.*/
+const eConst = 2 + aConst + bConst
+console.log(eConst)
+
+const uConst = 4 + 5
+const vConst = 7 + 11
+/* função será executada depois de, pelo menos, 500
+milissegundos */
+setTimeout(function(){
+    const wConst = demorada()
+    console.log(wConst)
+}, 500)
+//enquanto isso, essas linhas prosseguem executando
+//sem ficar esperando
+const xConst = uConst + vConst
+console.log(xConst)
+
+setTimeout(function(){
+    console.log('dentro da timeout', 0)
+})
+const zConst = new Date().getTime() + 1000
+//não esqueça do ;, única instrução no corpo do while
+while (new Date().getTime() <= zConst);
+console.log('fora da timeout')
+
+function demorada(tempo) {
+    console.log(`demorada ${tempo}`);
+    const atualMaisTempo = new Date().getTime() + tempo;
+    //não esqueça do ;, única instrução no corpo do while
+    while (new Date().getTime() <= atualMaisTempo);
+    const d = 8 + 4;
+    return d;
+}
+setTimeout(function (){demorada(2000)}, 2000);
+setTimeout(function (){demorada(1000)}, 1000);
+console.log("chegou ao fim do script principal");
+
 //2.1 Representações JSON
 
 //Uma pessoa se chama João e tem 17 anos.
